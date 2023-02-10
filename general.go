@@ -105,8 +105,8 @@ func GeneralHandler(w http.ResponseWriter, r *http.Request, grpcConn *grpc.Clien
 			Float64("request-time", time.Since(queryStart).Seconds()).
 			Msg("Finished querying staking pool")
 
-		generalBondedTokensGauge.Set(float64(response.Pool.BondedTokens.Int64()))
-		generalNotBondedTokensGauge.Set(float64(response.Pool.NotBondedTokens.Int64()))
+		generalBondedTokensGauge.Set(float64(response.Pool.BondedTokens.bigInt()))
+		generalNotBondedTokensGauge.Set(float64(response.Pool.NotBondedTokens.bigInt()))
 	}()
 
 	wg.Add(1)
